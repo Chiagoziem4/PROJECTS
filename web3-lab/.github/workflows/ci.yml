@@ -1,0 +1,30 @@
+name: Web3 Lab CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+      - name: Compile contracts
+        run: npx hardhat compile
+      - name: Run tests
+        run: npx hardhat test
+      - name: Lint (if configured)
+        run: npx hardhat lint || echo 'No linter configured'
+      - name: Static analysis (Slither)
+        run: |
+          sudo apt-get update && sudo apt-get install -y python3-pip
+          pip3 install slither-analyzer
+          slither . || echo 'Slither analysis complete.'

@@ -1,0 +1,38 @@
+{
+  // VS Code tasks for running hacking lab scripts
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Quick Recon",
+      "type": "shell",
+      "command": "bash ${workspaceFolder}/recon/quickrecon.sh",
+      "args": [
+        "${input:targetRecon}"
+      ],
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "Web Scan",
+      "type": "shell",
+      "command": "bash ${workspaceFolder}/scans/webscan.sh",
+      "args": [
+        "${input:targetWebScan}"
+      ],
+      "problemMatcher": [],
+      "group": "build"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "targetRecon",
+      "type": "promptString",
+      "description": "Enter target for recon (domain or IP)"
+    },
+    {
+      "id": "targetWebScan",
+      "type": "promptString",
+      "description": "Enter target URL for web scan"
+    }
+  ]
+}

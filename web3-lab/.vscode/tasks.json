@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compile",
+      "type": "shell",
+      "command": "npx hardhat compile",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "deploy:local",
+      "type": "shell",
+      "command": "npx hardhat run scripts/deploy.js --network localhost",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "test",
+      "type": "shell",
+      "command": "npx hardhat test",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "lint",
+      "type": "shell",
+      "command": "npx hardhat lint || echo 'No linter configured'",
+      "group": "test",
+      "problemMatcher": []
+    }
+  ]
+}
